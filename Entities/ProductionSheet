@@ -1,0 +1,31 @@
+{
+  "name": "ProductionSheet",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "ID of the client this sheet belongs to"
+    },
+    "template_id": {
+      "type": "string",
+      "description": "ID of the workflow template"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the sheet (e.g., 'Active Items', 'Spring 2024 Completed', etc.)"
+    },
+    "sheet_type": {
+      "type": "string",
+      "enum": [
+        "active",
+        "completed",
+        "archive"
+      ],
+      "default": "active",
+      "description": "Type of sheet - active for in-progress items, completed for finished items"
+    },
+    "season": {
+      "type": "string",
+      "description": "Season identifier (e.g., 'Spring 2024', 'Fall 2024')"
+    },
+    "is_default": {
