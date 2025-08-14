@@ -1,0 +1,31 @@
+{
+  "name": "ItemStepStatus",
+  "type": "object",
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "description": "ID of the FabricItem"
+    },
+    "step_id": {
+      "type": "string",
+      "description": "ID of the WorkflowStep"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "completed",
+        "blocked",
+        "skipped"
+      ],
+      "default": "pending"
+    },
+    "assigned_to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Emails of assigned team members for this specific item-step"
+    },
+    "completed_at": {
