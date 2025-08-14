@@ -1,0 +1,31 @@
+
+import React, { useState, useEffect } from 'react';
+import { WorkflowTemplate, FabricItem, User } from '@/entities/all';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Plus, FileText, Trash2, Edit, Package, ArrowRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import { Skeleton } from '@/components/ui/skeleton';
+
+export default function WorkflowTemplates() {
+    const [templates, setTemplates] = useState([]);
+    const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [showDialog, setShowDialog] = useState(false);
+    const [editingTemplate, setEditingTemplate] = useState(null);
+    const [newTemplate, setNewTemplate] = useState({ name: '', description: '', category: '' });
+    const [isSaving, setIsSaving] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => { loadData(); }, []);
+
+    const loadData = async () => {
+        setIsLoading(true);
+        try {
+            const [templateData, itemData, user] = await Promise.all([
+                WorkflowTemplate.list('-created_date'),
