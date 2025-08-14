@@ -1,0 +1,31 @@
+{
+  "name": "WorkflowStep",
+  "type": "object",
+  "properties": {
+    "template_id": {
+      "type": "string",
+      "description": "ID of the parent WorkflowTemplate"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the step"
+    },
+    "step_order": {
+      "type": "number"
+    },
+    "default_assigned_to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Default team members assigned to this step"
+    },
+    "notification_enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "notification_type": {
+      "type": "string",
+      "enum": [
+        "instant",
+        "daily"
