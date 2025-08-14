@@ -1,0 +1,31 @@
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
+import { User, Shield, Users, Building } from 'lucide-react';
+
+const roleConfig = {
+    admin: { 
+        icon: Shield, 
+        label: 'Admin', 
+        color: 'bg-red-100 text-red-700',
+        description: 'Full system access'
+    },
+    team_member: { 
+        icon: Users, 
+        label: 'Team Member', 
+        color: 'bg-blue-100 text-blue-700',
+        description: 'Production management'
+    },
+    client: { 
+        icon: Building, 
+        label: 'Client', 
+        color: 'bg-green-100 text-green-700',
+        description: 'View-only access'
+    }
+};
+
+export default function RoleSwitcher({ currentUser, currentViewRole, onRoleChange }) {
+    const [isChanging, setIsChanging] = useState(false);
+    
+    // Determine available roles based on actual user role
