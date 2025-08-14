@@ -1,0 +1,26 @@
+{
+  "name": "WorkflowTemplate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the workflow (e.g., 'Standard T-Shirt Production')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the workflow's purpose"
+    },
+    "category": {
+      "type": "string",
+      "description": "Category like 'Apparel', 'Home Goods', etc."
+    },
+    "client_id": {
+      "type": "string",
+      "description": "ID of the client this workflow belongs to"
+    }
+  },
+  "required": [
+    "name",
+    "client_id"
+  ]
+}
