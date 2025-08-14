@@ -1,0 +1,31 @@
+
+import React, { useState, useEffect } from 'react';
+import { WorkflowTemplate, WorkflowStep, FabricItem, Client, User } from '@/entities/all';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
+import { Plus, Workflow, Trash2, Edit, Users, ArrowRight, Building } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import { Skeleton } from '@/components/ui/skeleton';
+
+export default function Workflows() {
+    const [workflows, setWorkflows] = useState([]);
+    const [clients, setClients] = useState([]);
+    const [items, setItems] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [showDialog, setShowDialog] = useState(false);
+    const [editingWorkflow, setEditingWorkflow] = useState(null);
+    const [newWorkflow, setNewWorkflow] = useState({
+        name: '',
+        description: '',
+        category: '',
+        client_id: ''
+    });
+    const [isSaving, setIsSaving] = useState(false);
+    const [currentViewRole, setCurrentViewRole] = useState(null); // Added state
