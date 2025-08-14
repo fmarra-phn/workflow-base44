@@ -1,0 +1,31 @@
+
+import React, { useState, useEffect } from "react";
+import { Client, FabricItem, ItemStepStatus, WorkflowTemplate, User } from "@/entities/all";
+import { Link, useNavigate } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { Button } from "@/components/ui/button";
+import { Plus, Briefcase, Boxes, CheckSquare, ListTodo } from "lucide-react";
+import StatsCard from "../components/dashboard/StatsCard";
+import MyTasks from "../components/dashboard/MyTasks";
+import ClientOverview from "../components/dashboard/ClientOverview";
+import TemplateUsage from "../components/dashboard/TemplateUsage";
+import { Skeleton } from "@/components/ui/skeleton";
+
+export default function Dashboard() {
+  const [stats, setStats] = useState({
+    clients: 0,
+    inProduction: 0,
+    completed: 0,
+    myTasks: 0,
+  });
+  const [myTasks, setMyTasks] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [fabricItems, setFabricItems] = useState([]);
+  const [templates, setTemplates] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    loadDashboardData();
+  }, []);
