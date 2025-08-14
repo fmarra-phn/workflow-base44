@@ -1,0 +1,31 @@
+
+import React, { useState, useEffect } from 'react';
+import { Client, FabricItem, User } from '@/entities/all';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Badge } from '@/components/ui/badge';
+import { Plus, Building, Mail, User as UserIcon, Package } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
+
+export default function Clients() {
+    const [clients, setClients] = useState([]);
+    const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [showAddDialog, setShowAddDialog] = useState(false);
+    const [editingClient, setEditingClient] = useState(null);
+    const [newClient, setNewClient] = useState({
+        name: '',
+        contact_person: '',
+        contact_email: '',
+        notes: ''
+    });
+    const [isSaving, setIsSaving] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
