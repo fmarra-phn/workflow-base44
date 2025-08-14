@@ -1,0 +1,31 @@
+
+import React, { useState, useEffect, useMemo } from 'react';
+import { FabricItem, ItemStepStatus, WorkflowTemplate, WorkflowStep, TeamMember, Client, ProductionSheet as ProductionSheetEntity } from '@/entities/all';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Plus, Settings, Trash2, Users, Edit, Archive } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
+import SheetCell from '../components/production-sheet/SheetCell';
+import CellEditor from '../components/production-sheet/CellEditor';
+import ClientSelector from '../components/production-sheet/ClientSelector';
+import StepConfigModal from '../components/production-sheet/StepConfigModal';
+import FormulaEditor from '../components/production-sheet/FormulaEditor';
+import SheetTabs from '../components/production-sheet/SheetTabs';
+import SheetCreator from '../components/production-sheet/SheetCreator';
+import SheetConfigModal from '../components/production-sheet/SheetConfigModal';
+
+export default function ProductionSheet() {
+    const [templates, setTemplates] = useState([]);
+    const [template, setTemplate] = useState(null);
+    const [steps, setSteps] = useState([]);
+    const [items, setItems] = useState([]);
+    const [statuses, setStatuses] = useState([]);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [clients, setClients] = useState([]);
+    const [sheets, setSheets] = useState([]);
+    const [activeSheet, setActiveSheet] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
