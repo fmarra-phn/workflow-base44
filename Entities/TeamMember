@@ -1,0 +1,31 @@
+{
+  "name": "TeamMember",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Team member email address"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Full name of team member"
+    },
+    "role": {
+      "type": "string",
+      "description": "Job role or title"
+    },
+    "department": {
+      "type": "string",
+      "description": "Department or team"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Skills and competencies"
+    },
+    "daily_reminder_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to send daily reminders"
