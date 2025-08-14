@@ -1,0 +1,31 @@
+{
+  "name": "FabricItem",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "ID of the client this item belongs to"
+    },
+    "workflow_template_id": {
+      "type": "string",
+      "description": "ID of the workflow template this item follows"
+    },
+    "sheet_id": {
+      "type": "string",
+      "description": "ID of the production sheet this item belongs to"
+    },
+    "name": {
+      "type": "string",
+      "description": "Item identifier (e.g., 'SKU-123', 'Red Cotton T-Shirt')"
+    },
+    "details": {
+      "type": "object",
+      "description": "Custom details about the item (e.g., color, size, material)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed",
+        "on_hold"
