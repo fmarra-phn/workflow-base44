@@ -1,0 +1,31 @@
+import React, { useState, useEffect } from 'react';
+import { User, ItemStepStatus, WorkflowStep, FabricItem, Client, WorkflowTemplate } from '@/entities/all';
+import { Skeleton } from '@/components/ui/skeleton';
+import PerformanceMetrics from '../components/analytics/PerformanceMetrics';
+import TeamPerformance from '../components/analytics/TeamPerformance';
+import WorkflowAnalysis from '../components/analytics/WorkflowAnalysis';
+import ClientActivity from '../components/analytics/ClientActivity';
+import { differenceInHours } from 'date-fns';
+
+export default function Analytics() {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [analyticsData, setAnalyticsData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    const loadData = async () => {
+        setIsLoading(true);
+        try {
+            const user = await User.me();
+            setCurrentUser(user);
+
+            if (user.role !== 'admin') {
+                setIsLoading(false);
+                return;
+            }
+
+            const [users, stepStatuses, steps, items, clients, templates] = await Promise.all([
+                User.list(),
