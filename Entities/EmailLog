@@ -1,0 +1,31 @@
+{
+  "name": "EmailLog",
+  "type": "object",
+  "properties": {
+    "recipient_email": {
+      "type": "string",
+      "description": "Email recipient"
+    },
+    "email_type": {
+      "type": "string",
+      "enum": [
+        "step_completion",
+        "daily_reminder",
+        "workflow_assignment",
+        "overdue_alert"
+      ],
+      "description": "Type of email sent"
+    },
+    "workflow_id": {
+      "type": "string",
+      "description": "Related workflow ID"
+    },
+    "step_id": {
+      "type": "string",
+      "description": "Related step ID if applicable"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "sent_at": {
